@@ -1,0 +1,629 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: #0a0c10;
+    color: #fff;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Luxury gradient orbs background */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 30%, rgba(200, 175, 255, 0.03) 0%, transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(100, 150, 255, 0.03) 0%, transparent 45%),
+        radial-gradient(circle at 40% 80%, rgba(255, 200, 220, 0.02) 0%, transparent 50%),
+        radial-gradient(circle at 90% 20%, rgba(170, 140, 250, 0.02) 0%, transparent 55%),
+        radial-gradient(circle at 10% 60%, rgba(210, 180, 255, 0.02) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Subtle noise texture for luxury feel */
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.02'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.4;
+}
+
+/* ============================================= */
+/* GLOWING PARTICLES - ANIMATED BACKGROUND      */
+/* ============================================= */
+.particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.particle {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle at center, 
+        rgba(255, 255, 255, 0.8) 0%,
+        rgba(200, 180, 255, 0.6) 30%,
+        rgba(150, 140, 255, 0.3) 60%,
+        transparent 100%
+    );
+    box-shadow: 
+        0 0 20px rgba(200, 180, 255, 0.5),
+        0 0 40px rgba(150, 140, 255, 0.3),
+        0 0 60px rgba(100, 120, 255, 0.2);
+    animation: floatGlow linear infinite;
+    pointer-events: none;
+}
+
+@keyframes floatGlow {
+    0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 0.8;
+    }
+    25% {
+        transform: translate(30px, -20px) scale(1.2);
+        opacity: 1;
+    }
+    50% {
+        transform: translate(60px, 10px) scale(0.9);
+        opacity: 0.6;
+    }
+    75% {
+        transform: translate(30px, 40px) scale(1.1);
+        opacity: 0.9;
+    }
+    100% {
+        transform: translate(0, 0) scale(1);
+        opacity: 0.8;
+    }
+}
+
+.particle-large {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle at center, 
+        rgba(120, 180, 255, 0.2) 0%,
+        rgba(180, 140, 255, 0.1) 40%,
+        transparent 80%
+    );
+    filter: blur(40px);
+    animation: pulseGlow 8s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes pulseGlow {
+    0%, 100% {
+        opacity: 0.3;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.6;
+        transform: scale(1.2);
+    }
+}
+
+@keyframes slowDrift {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+    100% {
+        transform: translate(100px, -100px) scale(1.3);
+    }
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* ELEGANT HEADER SECTION */
+header {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    z-index: 3;
+}
+
+/* Luxury nameplate */
+h1 {
+    font-size: 6rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    background: linear-gradient(135deg, #ffffff 0%, #f0e6ff 50%, #d4c4ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    position: relative;
+    margin-bottom: 0.1em;
+    text-shadow: 0 0 80px rgba(200, 180, 255, 0.4);
+    animation: titleBreath 4s infinite alternate;
+    font-family: 'Inter', sans-serif;
+    line-height: 1.1;
+}
+
+@keyframes titleBreath {
+    0% { 
+        text-shadow: 0 0 60px rgba(200, 180, 255, 0.2);
+        letter-spacing: -0.03em;
+    }
+    100% { 
+        text-shadow: 0 0 100px rgba(200, 180, 255, 0.5), 0 0 30px rgba(255, 255, 255, 0.3);
+        letter-spacing: -0.02em;
+    }
+}
+
+/* Signature line under name */
+h1::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), rgba(200, 180, 255, 0.8), rgba(255, 255, 255, 0.6), transparent);
+}
+
+.subtitle {
+    font-size: 1.35rem;
+    color: #cbd5e1;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    position: relative;
+    display: inline-block;
+    padding: 0 30px;
+    margin-top: 50px;
+    font-weight: 400;
+    opacity: 0.9;
+}
+
+.subtitle span {
+    display: inline-block;
+    animation: subtleFloat 6s infinite ease-in-out;
+}
+
+@keyframes subtleFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+}
+
+/* Luxury divider */
+.subtitle::before,
+.subtitle::after {
+    content: '✦';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 1.2rem;
+}
+
+.subtitle::before {
+    right: 100%;
+    margin-right: 20px;
+}
+
+.subtitle::after {
+    left: 100%;
+    margin-left: 20px;
+}
+
+/* PROJECTS SECTION - ULTRA ELEGANT */
+.projects {
+    padding: 100px 12%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    gap: 50px;
+    position: relative;
+    z-index: 3;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+/* Luxury card design */
+.project-card {
+    background: rgba(18, 22, 30, 0.7);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    border-radius: 40px;
+    padding: 50px 45px;
+    transition: all 0.7s cubic-bezier(0.2, 0.9, 0.4, 1);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 30px 50px -30px rgba(0, 0, 0, 0.8);
+}
+
+/* Gold/platinum accent border */
+.project-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 40px;
+    padding: 1.5px;
+    background: linear-gradient(145deg, 
+        rgba(255, 255, 255, 0.5), 
+        rgba(200, 180, 255, 0.3), 
+        rgba(150, 140, 255, 0.2),
+        transparent 80%
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+}
+
+.project-card:hover::after {
+    opacity: 1;
+}
+
+/* Elegant corner quote */
+.project-card::before {
+    content: '“';
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 4rem;
+    color: rgba(255, 255, 255, 0.03);
+    font-family: serif;
+    line-height: 1;
+}
+
+.project-card:hover::before {
+    color: rgba(200, 180, 255, 0.1);
+    transform: scale(1.1);
+    transition: all 0.5s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-15px) scale(1.02);
+    background: rgba(25, 30, 40, 0.8);
+    border-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 
+        0 40px 70px -30px rgba(0, 0, 0, 0.9),
+        0 0 0 1px rgba(255, 255, 255, 0.02) inset;
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
+    z-index: 5;
+}
+
+/* Project title - luxury typography */
+.project-card h3 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #ffffff, #e8e0ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 25px;
+    letter-spacing: -0.02em;
+    position: relative;
+    display: inline-block;
+    font-family: 'Inter', sans-serif;
+}
+
+/* Elegant underline with gradient */
+.project-card h3::after {
+    content: '';
+    position: absolute;
+    bottom: -12px;
+    left: 0;
+    width: 70px;
+    height: 2px;
+    background: linear-gradient(90deg, #ffffff, rgba(200, 180, 255, 0.5), transparent);
+    border-radius: 2px;
+    transition: width 0.5s cubic-bezier(0.2, 0.9, 0.4, 1);
+}
+
+.project-card:hover h3::after {
+    width: 140px;
+    background: linear-gradient(90deg, #ffffff, #c4b5ff, #a59cff);
+}
+
+/* Description with elegant spacing */
+.project-card p {
+    color: #a0aec0;
+    line-height: 1.8;
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+    flex-grow: 1;
+    font-weight: 400;
+    opacity: 0.9;
+}
+
+/* BUTTONS - Ultra Elegant */
+.buttons {
+    display: flex;
+    gap: 25px;
+    margin-top: auto;
+}
+
+.buttons a {
+    padding: 16px 32px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 1.5px;
+    transition: all 0.6s cubic-bezier(0.2, 0.9, 0.4, 1);
+    position: relative;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border: none;
+    text-transform: uppercase;
+}
+
+/* Visit Website Button - Platinum/Gold style */
+.buttons a:nth-child(1) {
+    background: linear-gradient(135deg, #ffffff, #f0f0f0);
+    color: #0a0c10;
+    box-shadow: 0 10px 25px -8px rgba(255, 255, 255, 0.2);
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.buttons a:nth-child(1)::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: left 0.8s ease;
+}
+
+.buttons a:nth-child(1):hover::before {
+    left: 100%;
+}
+
+.buttons a:nth-child(1)::after {
+    content: '→';
+    position: absolute;
+    right: -20px;
+    opacity: 0;
+    transition: all 0.4s ease;
+    color: #0a0c10;
+}
+
+.buttons a:nth-child(1):hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 20px 40px -10px rgba(255, 255, 255, 0.3);
+    padding-right: 55px;
+    background: linear-gradient(135deg, #ffffff, #f8f8ff);
+}
+
+.buttons a:nth-child(1):hover::after {
+    right: 25px;
+    opacity: 1;
+}
+
+/* GitHub Button - Elegant outline */
+.buttons a:nth-child(2) {
+    background: transparent;
+    border: 1.5px solid rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+    backdrop-filter: blur(10px);
+    position: relative;
+}
+
+.buttons a:nth-child(2)::before {
+    content: '⌨️';
+    margin-right: 8px;
+    opacity: 0.8;
+    transition: transform 0.5s ease;
+}
+
+.buttons a:nth-child(2):hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px -8px rgba(255, 255, 255, 0.15);
+    letter-spacing: 2px;
+}
+
+.buttons a:nth-child(2):hover::before {
+    transform: rotate(360deg) scale(1.2);
+}
+
+/* FOOTER - Elegant minimal */
+footer {
+    text-align: center;
+    padding: 100px 20px 50px;
+    color: #8892a6;
+    position: relative;
+    z-index: 3;
+    font-size: 0.95rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 400;
+}
+
+footer::before {
+    content: '';
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    height: 1px;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(255, 255, 255, 0.2), 
+        rgba(200, 180, 255, 0.4), 
+        rgba(255, 255, 255, 0.2), 
+        transparent
+    );
+}
+
+footer::after {
+    content: '✦';
+    position: absolute;
+    top: 42px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 1.2rem;
+    background: #0a0c10;
+    padding: 0 20px;
+}
+
+/* ANIMATIONS */
+@keyframes fadeInUpLuxury {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+        filter: blur(2px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+    }
+}
+
+header {
+    animation: fadeInUpLuxury 1.5s cubic-bezier(0.2, 0.9, 0.4, 1);
+}
+
+.project-card {
+    animation: cardAppearLuxury 1s cubic-bezier(0.2, 0.9, 0.4, 1) backwards;
+}
+
+.project-card:nth-child(1) { animation-delay: 0.2s; }
+.project-card:nth-child(2) { animation-delay: 0.3s; }
+.project-card:nth-child(3) { animation-delay: 0.4s; }
+.project-card:nth-child(4) { animation-delay: 0.5s; }
+.project-card:nth-child(5) { animation-delay: 0.6s; }
+.project-card:nth-child(6) { animation-delay: 0.7s; }
+.project-card:nth-child(7) { animation-delay: 0.8s; }
+.project-card:nth-child(8) { animation-delay: 0.9s; }
+
+@keyframes cardAppearLuxury {
+    from {
+        opacity: 0;
+        transform: translateY(40px) scale(0.98);
+        filter: blur(3px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
+}
+
+/* CUSTOM SCROLLBAR - Ultra elegant */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #0a0c10;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #3a3f4a, #2a2f3a);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #4a4f5a, #3a3f4a);
+}
+
+/* RESPONSIVE LUXURY */
+@media (max-width: 1200px) {
+    .projects {
+        padding: 80px 8%;
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    }
+    
+    h1 {
+        font-size: 5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 3.8rem;
+    }
+    
+    .subtitle {
+        font-size: 1rem;
+        letter-spacing: 0.2em;
+        padding: 0 15px;
+    }
+    
+    .projects {
+        padding: 60px 25px;
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    
+    .project-card {
+        padding: 40px 35px;
+    }
+    
+    .project-card h3 {
+        font-size: 1.9rem;
+    }
+    
+    .buttons {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .buttons a {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 2.8rem;
+    }
+    
+    .subtitle::before,
+    .subtitle::after {
+        display: none;
+    }
+    
+    .project-card {
+        padding: 35px 25px;
+    }
+    
+    .project-card h3 {
+        font-size: 1.7rem;
+    }
+}
